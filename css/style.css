@@ -115,14 +115,16 @@ header p {
 #edit-container {
     display: flex;
     min-height: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.03) inset;
 }
 
 .edit-panel {
     width: 35%;
     border-right: 1px solid #e9ecef;
-    padding: 20px;
+    padding: 24px;
     overflow-y: auto;
     max-height: 800px;
+    background-color: #fcfcfd;
 }
 
 .preview-panel {
@@ -135,9 +137,10 @@ header p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #e9ecef;
+    position: relative;
 }
 
 .panel-header h3 {
@@ -145,10 +148,19 @@ header p {
     color: #495057;
 }
 
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .panel-section {
-    margin-bottom: 25px;
-    padding-bottom: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
     border-bottom: 1px solid #e9ecef;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
 .panel-section:last-child {
@@ -157,55 +169,102 @@ header p {
 
 .panel-section h4 {
     font-size: 1.1rem;
-    color: #495057;
-    margin-bottom: 15px;
+    color: #3a4046;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f5;
+    font-weight: 600;
 }
 
 .panel-section h4 i {
     color: #4a6bdf;
+    font-size: 1.2rem;
 }
 
 /* 选项组样式 */
 .option-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    position: relative;
+    padding: 0 2px;
 }
 
 .option-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #495057;
     font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .slider-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .slider-container input[type="range"] {
     flex: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e9ecef;
+    border-radius: 3px;
+    outline: none;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #4a6bdf;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .slider-container input[type="number"] {
     width: 60px;
     text-align: center;
+    border: 1px solid #e0e4e8;
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 0.9rem;
 }
 
 .input-group {
     display: flex;
-    gap: 8px;
+    gap: 10px;
+    align-items: center;
 }
 
 .input-group input,
 .input-group select {
-    padding: 8px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    padding: 10px 14px;
+    border: 1px solid #e0e4e8;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 42px;
+    background-color: #f9fafc;
+}
+
+.input-group input:hover,
+.input-group select:hover {
+    border-color: #c8d0e0;
+    background-color: #fcfdff;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #4a6bdf;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 107, 223, 0.15);
+    background-color: #fff;
 }
 
 .input-group input {
@@ -215,16 +274,97 @@ header p {
 .checkbox-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    padding: 4px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4a6bdf;
+    cursor: pointer;
 }
 
 .dimensions {
     display: flex;
     gap: 15px;
+    margin-bottom: 5px;
 }
 
 .dimensions .input-group {
     flex: 1;
+    position: relative;
+}
+
+.dimensions .input-group label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.dimensions .input-group input {
+    width: 100%;
+    padding: 10px 40px 10px 12px;
+    border: 1px solid #e0e4e8;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: right;
+    transition: all 0.2s ease;
+    background-color: #f9fafc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dimensions .input-group input:hover {
+    border-color: #c8d0e0;
+    background-color: #fcfdff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.dimensions .input-group input:focus {
+    border-color: #4a6bdf;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(74, 107, 223, 0.15);
+    transform: translateY(-1px);
+}
+
+.dimensions .input-group input:focus:hover {
+    border-color: #4a6bdf;
+    background-color: #fff;
+}
+
+.dimensions .input-group::after {
+    content: "px";
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* 添加锁定宽高比的视觉效果 */
+.checkbox-group label[for="lock-aspect-ratio"] {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.checkbox-group label[for="lock-aspect-ratio"]::after {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%234a6bdf" class="bi bi-link-45deg" viewBox="0 0 16 16"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/><path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label[for="lock-aspect-ratio"]::after {
+    opacity: 1;
 }
 
 .preset-ratios {
@@ -235,10 +375,11 @@ header p {
 
 .file-info {
     background-color: #f8f9fa;
-    padding: 12px;
-    border-radius: 6px;
+    padding: 14px;
+    border-radius: 8px;
     font-size: 0.9rem;
-    margin-top: 15px;
+    margin-top: 18px;
+    border-left: 3px solid #4a6bdf;
 }
 
 .file-info div {
@@ -250,16 +391,20 @@ header p {
 }
 
 .format-info {
-    margin-top: 10px;
+    margin-top: 14px;
     font-size: 0.9rem;
     color: #6c757d;
+    background-color: #f8f9fa;
+    padding: 10px 14px;
+    border-radius: 6px;
 }
 
 .download-info {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 14px;
     font-size: 0.9rem;
     color: #6c757d;
+    padding: 8px 0;
 }
 
 /* 预览区域 */
@@ -363,15 +508,19 @@ canvas {
 .btn.primary {
     background-color: #4a6bdf;
     color: white;
+    box-shadow: 0 2px 5px rgba(74, 107, 223, 0.2);
 }
 
 .btn.primary:hover {
     background-color: #3a5bbf;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(74, 107, 223, 0.25);
 }
 
 .btn.small {
-    padding: 6px 12px;
+    padding: 7px 14px;
     font-size: 0.9rem;
+    border-radius: 4px;
 }
 
 .btn.icon {
@@ -486,6 +635,11 @@ canvas {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* 重新选择照片按钮 - 移除这部分，因为我们将把按钮移到面板头部 */
+.reselect-photo {
+    display: none;
 }
 
 /* 页脚样式 */

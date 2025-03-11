@@ -34,6 +34,9 @@ function initializeApp() {
     
     // 初始化重置功能
     document.getElementById('reset-all').addEventListener('click', resetAllSettings);
+    
+    // 初始化重新选择照片功能
+    initReselectPhoto();
 }
 
 // 上传功能
@@ -417,7 +420,33 @@ function initResizing() {
     // 初始化宽高比
     if (originalImage) {
         aspectRatio = originalImage.width / originalImage.height;
+        
+        // 设置初始值并添加单位提示
+        widthInput.value = originalImage.width;
+        heightInput.value = originalImage.height;
     }
+    
+    // 输入框焦点效果
+    [widthInput, heightInput].forEach(input => {
+        // 获取焦点时选中所有文本
+        input.addEventListener('focus', function() {
+            setTimeout(() => this.select(), 0);
+        });
+        
+        // 失去焦点时验证值
+        input.addEventListener('blur', function() {
+            const value = parseInt(this.value);
+            if (isNaN(value) || value <= 0) {
+                // 如果值无效，恢复为原始尺寸
+                if (this === widthInput) {
+                    this.value = originalImage ? originalImage.width : 100;
+                } else {
+                    this.value = originalImage ? originalImage.height : 100;
+                }
+            }
+            applyResize();
+        });
+    });
     
     // 监听宽度变化
     widthInput.addEventListener('input', () => {
@@ -899,4 +928,19 @@ function showLoading(message = '处理中...') {
 // 隐藏加载提示
 function hideLoading() {
     document.getElementById('loading-overlay').classList.add('hidden');
+}
+
+// 初始化重新选择照片功能
+function initReselectPhoto() {
+    const reselectBtn = document.getElementById('reselect-photo-btn');
+    const fileInput = document.getElementById('file-input');
+    
+    if (reselectBtn) {
+        reselectBtn.addEventListener('click', () => {
+            // 清空文件输入框的值，确保可以选择相同的文件
+            fileInput.value = '';
+            // 触发文件选择
+            fileInput.click();
+        });
+    }
 }
